@@ -44,6 +44,7 @@ void CompressString(char *s)
         s++;
         if (len > 1)
         {
+            // For this example, we won't bother with runs greater than 9
             *s = len + '0';
             s++;
         }
