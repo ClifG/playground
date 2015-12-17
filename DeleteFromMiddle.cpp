@@ -81,14 +81,8 @@ void DeleteFromMiddle(Node<T> *n)
     
     n->data = n->next->data;
     
-    while (n->next->next)
-    {
-        n = n->next;
-        n->data = n->next->data;
-    }
-    
     Node<T> *toDelete = n->next;
-    n->next = nullptr;
+    n->next = n->next->next;
     delete toDelete;
 }
 
