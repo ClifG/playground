@@ -34,6 +34,16 @@ public:
         head(nullptr)
     {}
     
+    ~LinkedList()
+    {
+        while (head)
+        {
+            Node<T> *toDelete = head;
+            head = head->next;
+            delete toDelete;
+        }
+    }
+    
     void Append(T d)
     {
         if (!head)
