@@ -169,8 +169,15 @@ void _PrintWords(const char* number, char* word, int idx, Trie *trie)
 
 void PrintWords(const char* number)
 {
-    Trie trie;
-    FillTrie("/usr/share/dict/words", &trie);
+    static Trie trie;
+    static bool trieInitialized = false;
+    
+    // Note: Not thread-safe
+    if (!trieInitialized)
+    {
+        FillTrie("/usr/share/dict/words", &trie);
+        trieInitialized = true;
+    }
     
     std::unique_ptr<char[]> word(new char[strlen(number) + 1]());
     _PrintWords(number, word.get(), 0, &trie);
